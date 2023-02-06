@@ -1,54 +1,31 @@
 {
-<<<<<<< HEAD
   "name": "webpack",
   "version": "1.0.0",
-  "description": "webpack project",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.production.js",
     "start": "webpack-dev-server --config webpack.development.js --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "js"
-  ],
-  "author": "Katerina <k.drazhina@gmail.com>",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "dotenv": "^16.0.3",
+    "prod": "^1.0.1",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
-  "dependencies": {
-    "clean-webpack-plugin": "^4.0.0",
+  "devDependencies": {
     "css-loader": "^6.7.3",
-    "dotenv": "^16.0.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1",
     "system-bell-webpack-plugin": "^1.0.0",
-=======
-  "name": "markup",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "webpack serve --config webpack.dev.js ",
-    "build": "webpack --config webpack.prod.js"
-  },
-  "author": "Voronovich",
-  "license": "ISC",
-  "devDependencies": {
-    "css-loader": "^6.7.3",
-    "dotenv": "^16.0.3",
-    "html-webpack-plugin": "^5.5.0",
-    "sass": "^1.58.0",
-    "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
->>>>>>> f35b19353856084173727b0c5ad7a20797f93232
-    "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-dev-server": "^4.11.1"
   }
 }
