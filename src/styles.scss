@@ -160,6 +160,12 @@ nav {
   align-items: center;
   justify-content: center;
   align-content: flex-start;
+
+  .squares__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 .article {
@@ -174,7 +180,13 @@ nav {
     height: 40px;
     width: 40px;
     background-color: greenyellow;
-    animation: 4s linear 0s infinite alternate bounce;
+    animation: 2s linear 0s infinite alternate bounce;
+  }
+
+  .square__js {
+    height: 40px;
+    width: 40px;
+    background-color: rgb(225, 92, 10);
   }
 }
 
@@ -183,7 +195,7 @@ nav {
     transform: translateX(0);
   }
   to {
-    transform: translateX(12vh);
+    transform: translateX(350%);
   }
 }
 
