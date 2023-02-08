@@ -206,6 +206,7 @@ nav {
 
 .aside {
   display: flex;
+  gap: 5px;
   flex-direction: column;
   padding: 15px;
   background-color: #ef5b5b;
@@ -213,6 +214,19 @@ nav {
   > p {
     font-style: italic;
   }
+}
+
+.drop {
+  height: auto;
+}
+
+.hide__option {
+  color: transparent;
+  height: 0;
+}
+
+.option {
+  padding-top: 5px;
 }
 
 .footer {
