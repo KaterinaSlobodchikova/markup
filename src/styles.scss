@@ -176,6 +176,15 @@ nav {
   justify-content: center;
   flex-grow: 1;
 
+  .character__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .character__img {
+    padding-top: 30px;
+  }
+
   .square {
     height: 40px;
     width: 40px;
@@ -188,6 +197,15 @@ nav {
     width: 40px;
     background-color: rgb(225, 92, 10);
   }
+}
+
+.article__four {
+  background: #682828;
+  padding: 10px;
+  max-width: 500px;
+  min-width: 200px;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 @keyframes bounce {
@@ -227,6 +245,7 @@ nav {
 
 .option {
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .footer {
