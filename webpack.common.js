@@ -2,7 +2,9 @@ const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    filename: path.resolve(__dirname, "src/index.js"),
+    // filename: path.resolve(__dirname, "src/index.js"),
+    app: "./src/index.js",
+    worker: "./src/worker.js",
   },
   module: {
     rules: [
@@ -16,6 +18,7 @@ module.exports = {
     new htmlWebpackPlugin({
       filename: "index.html",
       template: "src/index.html",
+      excludeChunks: ["worker"],
     }),
   ],
 };

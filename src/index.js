@@ -1,6 +1,15 @@
 import "./styles.scss";
+import "./js/sum.js";
 
 window.onload = () => {
+  // setInterval(() => {
+  //   new Promise(() => {
+  //     for (let a = 0; a < 1000000; a++) {
+  //       console.log(1);
+  //     }
+  //   });
+  // }, 5000);
+
   const container = document.getElementById("animate__article");
   const maxXPosition = container.getBoundingClientRect().width - 10;
   let square = document.getElementById("animatejs");
@@ -202,7 +211,7 @@ const getFourCharacters = async () => {
       "https://rickandmortyapi.com/api/character/125,259, 543, 810"
     );
     fourCharacters = response.data;
-    console.log(fourCharacters);
+    // console.log(fourCharacters);
   } catch (error) {
     console.log(error);
   }

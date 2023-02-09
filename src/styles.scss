@@ -145,11 +145,16 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #516644;
+  // background: green;
   justify-content: space-around;
   gap: 10px;
   padding: 10px;
   min-width: 230px;
+
+  .btn__wrapper {
+    display: flex;
+    gap: 15px;
+  }
 }
 
 .article__wrapper {
