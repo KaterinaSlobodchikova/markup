@@ -1,5 +1,6 @@
+import { AxiosResponse } from "axios";
 import "./styles.scss";
-import "./js/sum.js";
+import "./js/sum";
 
 window.onload = () => {
   // setInterval(() => {
@@ -10,22 +11,25 @@ window.onload = () => {
   //   });
   // }, 5000);
 
-  const container = document.getElementById("animate__article");
-  const maxXPosition = container.getBoundingClientRect().width - 10;
-  let square = document.getElementById("animatejs");
-  const containerPad = getComputedStyle(container, null)
+  const container = document.getElementById("animate__article") as HTMLElement;
+  const maxXPosition: number = container!.getBoundingClientRect().width - 10;
+  let square = document.getElementById("animatejs") as HTMLDivElement;
+  const containerPad: string = getComputedStyle(container, null)
     .getPropertyValue("padding-right")
     .replace(/px/gi, "");
-  const squareWidth = square.getBoundingClientRect().width;
+  const squareWidth: number = square.getBoundingClientRect().width;
   timeoutAnimate(maxXPosition, containerPad, squareWidth);
   frameAnimate(maxXPosition, containerPad, squareWidth);
-  showFourCharacters();
 };
 
-function timeoutAnimate(maxXPosition, containerPad, squareWidth) {
+function timeoutAnimate(
+  maxXPosition: number,
+  containerPad: string,
+  squareWidth: number
+) {
   let fps = 60;
   const refreshRate = 1000 / fps;
-  let block = document.getElementById("animate");
+  let block = document.getElementById("animate") as HTMLDivElement;
   let speedX = 3;
   let positionX = 0;
 
@@ -41,12 +45,16 @@ function timeoutAnimate(maxXPosition, containerPad, squareWidth) {
   }, refreshRate);
 }
 
-function frameAnimate(maxXPosition, containerPad, squareWidth) {
-  let square = document.getElementById("animatejs");
+function frameAnimate(
+  maxXPosition: number,
+  containerPad: string,
+  squareWidth: number
+) {
+  let square = document.getElementById("animatejs") as HTMLDivElement;
   let prevTime = 0;
   let position = 0;
   let speed = 10;
-  function startAnimation(time) {
+  function startAnimation(time: number) {
     if (!prevTime) {
       prevTime = time;
     }
@@ -68,21 +76,16 @@ function frameAnimate(maxXPosition, containerPad, squareWidth) {
 //   { value: "value1", text: "text2" },
 // ];
 
-//rickandmortyapi
+//------------------rickandmortyapi------------//
 
 // перехватить code=200 и вывести в консоль success
 
 const axios = require("axios");
 
-axios.interceptors.request.use(
-  function (response) {
-    console.log("Success");
-    return response;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+axios?.interceptors?.request.use((response: AxiosResponse) => {
+  console.log("Success");
+  return response;
+});
 
 // axios({
 //   method: "get",
@@ -91,11 +94,19 @@ axios.interceptors.request.use(
 //   console.log(response.data.results);
 // });
 
-let characters;
+interface ICharacters {
+  id: number;
+  name: string;
+  status: string;
+  image: string;
+  species: string;
+}
+
+let characters: ICharacters[];
 
 const getCharacters = async () => {
   try {
-    const response = await axios.get(
+    const response: AxiosResponse = await axios.get(
       "https://rickandmortyapi.com/api/character"
     );
     characters = response.data.results;
@@ -131,30 +142,32 @@ getCharacters();
 //   ul.appendChild(opt);
 // });
 
-const dropInput = document.getElementById("input__drop");
+const dropInput = document.getElementById("input__drop") as HTMLInputElement;
+let dropInputValue = dropInput.value;
 
-dropInput.addEventListener("input", show);
+dropInput?.addEventListener("input", show);
 // dropInput.addEventListener("blur", hide);
 
-function hide() {
-  const li = document.querySelectorAll(".option");
-  li.forEach((item) => {
-    item.classList.add("hide__option");
-  });
-}
+// function hide() {
+//   const li = document.querySelectorAll(".option");
+//   li.forEach((item) => {
+//     item.classList.add("hide__option");
+//   });
+// }
 
 function show() {
-  let inputText = document.getElementById("input__drop").value;
+  let inputText = document.getElementById("input__drop") as HTMLInputElement;
+  let inputTextValue = inputText.value;
 
-  let parent = document.getElementById("drop");
-  while (parent.lastElementChild) {
+  let parent: HTMLElement | null = document.getElementById("drop");
+  while (parent?.lastElementChild) {
     parent.removeChild(parent.lastElementChild);
   }
-  if (inputText.length == 0) return;
+  if (inputTextValue.length == 0) return;
 
   const filteredOptions = characters
     .filter((option) =>
-      option.name.toLowerCase().includes(inputText.toLowerCase())
+      option.name.toLowerCase().includes(inputTextValue.toLowerCase())
     )
     .slice(0, 10);
 
@@ -165,7 +178,7 @@ function show() {
     listElement.textContent = item.name;
     listElement.dataset.image = item.image;
     listElement.classList.add("option");
-    let ul = document.querySelector(".drop");
+    let ul = document.querySelector(".drop") as HTMLElement;
     ul.appendChild(listElement);
   });
   addEvent();
@@ -175,9 +188,9 @@ function show() {
 
 function addEvent() {
   const lis = document.querySelectorAll(".option");
-  lis.forEach((link) => {
+  lis.forEach((link: any) => {
     link.addEventListener("click", () => {
-      dropInput.value = link.textContent;
+      dropInputValue = link.textContent!;
       removeInfo();
 
       let paragraph = document.createElement("p");
@@ -186,7 +199,9 @@ function addEvent() {
       let img = document.createElement("img");
       img.classList.add("character__img");
       img.src = link.dataset.image;
-      const article = document.getElementById("article__character");
+      const article = document.getElementById(
+        "article__character"
+      ) as HTMLElement;
       article.appendChild(img);
       article.appendChild(paragraph);
     });
@@ -194,7 +209,7 @@ function addEvent() {
 }
 
 function removeInfo() {
-  const article = document.getElementById("article__character");
+  const article = document.getElementById("article__character") as HTMLElement;
   const img = article.querySelector(".character__img");
   const p = article.querySelector(".character__p");
   if (img) article.removeChild(img);
@@ -203,24 +218,30 @@ function removeInfo() {
 
 // отобразить 4 героя сразу
 
-let fourCharacters;
+interface IFourCharacters {
+  id: number;
+  name: string;
+  status: string;
+  image: string;
+  species: string;
+}
 
 const getFourCharacters = async () => {
-  try {
-    const response = await axios.get(
-      "https://rickandmortyapi.com/api/character/125,259, 543, 810"
-    );
-    fourCharacters = response.data;
-    // console.log(fourCharacters);
-  } catch (error) {
-    console.log(error);
-  }
+  let fourCharacters: Array<IFourCharacters> = [];
+  const response: AxiosResponse = await axios.get(
+    "https://rickandmortyapi.com/api/character/125,259, 543, 810"
+  );
+  console.log(fourCharacters);
+  fourCharacters = response.data;
+  showFourCharacters(fourCharacters);
 };
+
 getFourCharacters();
 
-function showFourCharacters() {
-  let article_four = document.querySelectorAll(".article__four");
+function showFourCharacters(fourCharacters: Array<IFourCharacters>) {
+  const article_four = document.querySelectorAll(".article__four");
   article_four.forEach((item, index) => {
+    console.log(fourCharacters[index]);
     let paragraph = document.createElement("p");
     paragraph.textContent = fourCharacters[index].name;
     let paragraphSpecies = document.createElement("p");
